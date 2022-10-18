@@ -1,0 +1,64 @@
+\documentclass[a4paper, 11pt]{article}
+\usepackage[
+	backend=biber,
+	style=apa
+]{biblatex}
+\usepackage{graphicx}
+\usepackage[a4paper]{geometry}
+	\geometry{left=3.5cm,right=2.5cm,top=2.4cm,bottom=2cm}%Seitenränder
+	\usepackage[onehalfspacing]{setspace}%Zeilenabstand
+	\renewcommand{\\}{\vspace*{0.5\baselineskip} \newline}
+\usepackage[colorlinks,
+    pdfpagelabels,
+    pdfstartview = FitH,
+    bookmarksopen = true,
+    bookmarksnumbered = true,
+    linkcolor = black,
+    urlcolor = black,
+    plainpages = false,
+    hypertexnames = false,
+    citecolor = black] {hyperref}
+\usepackage[parfill]{parskip}
+\usepackage{listings}
+\addbibresource{refs.bib}
+
+\renewcommand{\familydefault}{\sfdefault}
+
+\begin{document}
+\begin{titlepage}
+
+    \begin{huge}
+    	Code signatures for plagiarism detection
+    \end{huge}
+    ~\\
+    ~\\
+    ~\\
+    \noindent\begin{tabular}{ll}
+    Dennis Großler
+
+    ~\\
+    ~\\
+    Dennis Wäckerle
+    ~\\
+    dennis.waeckerle@smail.th-koeln.de
+    \end{tabular}
+
+\end{titlepage}
+
+\section*{Abstract}
+\newpage
+\tableofcontents
+\newpage
+
+\section{Introduction}
+
+\section{Conclusion}
+
+\printbibliography[
+	heading=bibintoc,
+	title={References}
+]
+
+\appendix
+
+\end{document}
