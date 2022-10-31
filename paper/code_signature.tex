@@ -56,6 +56,10 @@ citecolor = black] {hyperref}
 
 \section{Use Case and Software Experiment}
 
+\subsection{Use Case}
+
+\subsection{Software Experiment}
+
 \section{Criteria for Evaluation}
 
 \section{Evaluation of the different Tools}
@@ -64,13 +68,30 @@ citecolor = black] {hyperref}
 
 \subsection{JPlag}
 
+\subsubsection{JPlag's comparison algorithm}
+
+- Functions in two phases 
+1. all programs are parsed and converted into tokens
+2. tokens strings are compared in pairs. Tries to cover one token stream with substrings of the other token. Percentage of covered token streams is
+the similarity. \autocite[p. 10]{JPlagP}
+
+- Tokenizing -> only language dependent process\autocite[p. 10]{JPlagP}
+- Tokens represent syntactic elements e.g. statements or control structures\autocite[How are submissions represented? — Notion of Token]{JPlagW4}
+
+- Transformation
+- each file is parsed -> result set of Abstract Syntax Trees for each submission
+- each AST traversed depth first, nodes are  grammatical units of language
+- when entering and exiting a node a token can be created and added to the token list
+- block type node e.g. classes or if expressions have corresponding begin and end tokens. 
+	Token list should have balanced pairs of matching begin and end tokens
+
+- Comparing token strings
+
+\subsubsection{The results}
+
+\subsubsection{Integration into an automated evaluation pipeline}
+
 \subsection{Plaggie}
-
-Hallo das ist ein Test \autocite[Hallo 4]{JPlagP}.
-Hallo das ist ein Test \autocite[Hallo 4]{JPlagP}.
-Hallo das ist ein Test \autocite[Hallo 4]{JPlagP}.
-
-Hallo das ist ein Test \autocite[Hallo 4]{JPlagP}.
 
 \subsection{AC2}
 
