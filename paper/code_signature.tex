@@ -12,6 +12,7 @@
 	\usepackage[onehalfspacing]{setspace}%Zeilenabstand
 	\renewcommand{\\}{\vspace*{0.5\baselineskip} \newline}
 \renewcommand*\MakeUppercase[1]{#1}	
+\usepackage{tablefootnote}
 \usepackage{fancyhdr}
 	\pagestyle{fancy}
 	\renewcommand{\headrulewidth}{0pt}
@@ -77,11 +78,11 @@ Moss and other plagiarism detection tools are not perfect, so a human should go 
 	\hline
 			& C   & C++ & C\# & Java & Kotlin & Python & PHP & VB.net & Javascript & Is expandable? \\ \hline
 	MOSS    & Yes & Yes & Yes & Yes  & No     & Yes    & No  & Yes    & Yes        & No             \\ \hline
-	JPlag   & ??? & ??? & ??? & ???  & ???    & ???    & ??? & ???    & ???        & Yes            \\ \hline
-	Plaggie & ??? & ??? & ??? & ???  & ???    & ???    & ??? & ???    & ???        & ???            \\ \hline
+	JPlag   & No  & Yes & Yes & Yes  & Yes    & Yes    & No  & No     & No         & Yes            \\ \hline
+	Plaggie & No  & No  & No  & Yes  & No     & No     & No  & No     & No         & Yes\tablefootnote{Plaggie is open source, therefore a custom tokenizer for different languages can be implemented.}            \\ \hline
 	AC2     & Yes & Yes & No  & Yes  & No     & Yes    & Yes & No     & No         & Yes             \\ \hline
 	\end{tabular}
-	\caption{\label{tab:table-name}[The nativ supported programming languages for each plagiarism detection algorithm]}
+	\caption{\label{tab:table-name}[The native supported programming languages for each plagiarism detection algorithm]}
 \end{table}
 
 
