@@ -134,9 +134,51 @@ the similarity. \autocite[p. 10]{JPlagP}
 
 \subsubsection{The results}
 
+-comparisons without base code
+-successfully discovered plagiarism for m0 91.49\% and 90.51\% match
+-Other comparisons around 40\%
+-need base code
+
+-m4 less clear 84.77\%-76.2\%
+-need base code and another submission
+
 \subsubsection{Integration into an automated evaluation pipeline}
 
+-Can be executed locally
+-Has a cli and an api -> allows automation
+-Visualization in external web application -> might pose a problem
+
+-known unsuccessful attacks
+- Changing the comments
+- Changing the indentation
+- Method and variable name changes\autocite[Known successful attacks]{RMP}
+
+-know successful attacks
+- Moving inline code to separate methods and vice versa
+- Inclusion of redundant program code
+- Changing the order of if-else blocks and case-blocks\autocite[Known unsuccessful attacks]{RMP}
+
 \subsection{Plaggie}
+
+-Was the only open source tool when release\autocite{PLAGGIE}, JPlag now also open source
+
+\subsubsection{The Algorithm}
+
+-Uses CUP as a Parser
+-Uses standard LALR(1) parser generation\autocite{CUP}
+-GST with no special optimization attempts
+-Algorithm was extended to support exclusion of common code\autocite[4. Algorithm used]{RMP}
+
+\subsubsection{The rsults}
+
+-TODO still have to run it.
+
+\subsubsection{Integration into an automated evaluation pipeline}
+
+-only Java 1.5\autocite{PLAGGIE,RMP}
+-no further development since 2006
+-has a cli -> can be automated
+-results as html files
 
 \subsection{AC2}
 
