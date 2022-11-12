@@ -42,7 +42,7 @@ citecolor = black] {hyperref}
 
 \begin{document}
 
-\title{Code signatures for plagiarism detection}
+\title{How do various plagiarism detection tools differ in their detection results when applied to java/spring coding exercises}
 \author{Dennis Goßler \and Dennis Wäckerle}
 \maketitle
 
@@ -98,29 +98,48 @@ Moss supports the following programming languages C, C++, Java, C\#, Python, Vis
 
 \subsection{JPlag}
 
+JPlag is a plagiarism detection tool, which was developed by in 2000 at the University of Karlsruhe to help with the detection of plagiarized coding
+exercises. At that the tool was only available as a WWW service and could analyze C, C++. Scheme and Java programs \autocite[p. 4]{JPlagP}. Currently, the tool is available
+as an open source application which can be run locally and can be used with a CLI or a Java API. JPlag also currently supports 12 programming languages
+including the original four languages and more modern languages such as Kotlin \autocite[Supported Languages
+]{JPlagG} while also allowing to add new languages \autocite{JPlagW4}.
+
 \subsubsection{JPlag's comparison algorithm}
 
-- Functions in two phases 
-1. all programs are parsed and converted into tokens
-2. tokens strings are compared in pairs. Tries to cover one token stream with substrings of the other token. Percentage of covered token streams is
-the similarity. \autocite[p. 10]{JPlagP}
+JPlag's algorithm is split into two parts the tokenizing and the comparison of the token strings. During the tokenization
+process all programs are parsed and converted into token strings. In the second phase all token strings are compared
+in pairs to determine their similarity. This comparison uses a specially optimized version of the Greedy String Tiling
+algorithm. This algorithm tries to cover one token string with substrings of the other string. The percentage of the covered token 
+strings is the similarity between the two programs \autocite[p. 10]{JPlagP}.
 
-- Tokenizing -> only language dependent process\autocite[p. 10]{JPlagP}
-- Tokens represent syntactic elements e.g. statements or control structures\autocite[How are submissions represented? — Notion of Token]{JPlagW4}
+\paragraph{Tokenization}
 
-- Transformation
-- each file is parsed -> result set of Abstract Syntax Trees for each submission
-- each AST traversed depth first, nodes are  grammatical units of language
-- when entering and exiting a node a token can be created and added to the token list
-- block type node e.g. classes or if expressions have corresponding begin and end tokens. 
-	Token list should have balanced pairs of matching begin and end tokens \autocite[How does the transformation work?]{JPlagW4}
+The tokenization process is the only language dependent process of the JPlag algorithm \autocite[p. 10]{JPlagP}. The extracted tokens
+represent syntactic elements of the language like statements or control structures \autocite[How are submissions represented? — Notion of Token]{JPlagW4}.
+During the parsing process each file is parsed with the result being a set of abstract syntax trees(AST) for each submission. Each AST
+is traversed depth first with nodes representing grammatical units of the language. During the traversal when entering and exiting a 
+node a token can be created that match the type of the node and will then be added to the current list of tokens. There are block type
+nodes which can represent classes, if expressions or other elements of the language which have a corresponding beginning and end. When
+creating tokens from those nodes each have a corresponding "BEGIN" and "END" token. The token list should always have a pair of matching
+"BEGIN" and "END" tokens \autocite[How does the transformation work?]{JPlagW4}.
 
-- Comparing token strings
-- Essentially Greedy String Tiling
-- When comparing two strings A and B, the same subsstrings should be found satisfying following rules
-1. "Any token of A may only be matched with exactly one token from B."
-2. "Substrings are to be found independent of their position in the string."
-3. "Long substring matches are preferred over short ones" \autocite[p. 11]{JPlagP}
+\paragraph{Comparing token strings}
+
+JPlag's comparison algorithm is essentially just the greedy string tiling algorithm for the comparison of two strings, however it is differently
+optimized to improve its runtime\autocite[p. 5]{JPlagP}. The goal of the algorithm is to find a set of substrings
+which are not only the same but also satisfy these three rules:
+
+\begin{enumerate}
+	\item "Any token of A may only be matched with exactly one token from B."
+	\item "Substrings are to be found independent of their position in the string."
+	\item "Long substring matches are preferred over short ones[...]"
+\end{enumerate}\autocite[p. 11]{JPlagP}
+
+These rule have some consequences. The first rule doesn't allow the matching of code that have been duplicated while
+the second rule makes the reordering of the source code not viable. Furthermore, the third rule is introduced since
+short matches are more likely to be spurious \autocite[p. 11]{JPlagP}.
+
+
 - Applying the third rule sequentially leads to a greedy algorithm consisting of two phases
 1. Two strings are searched for the biggest contigous matches. 3 nested Loops. Outer loop iterates over tokens in
 	string A. Second loop compares Token T to Tokens in String B. Inner loop, if identical Tokens, extends the match
