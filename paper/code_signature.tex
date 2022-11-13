@@ -86,7 +86,7 @@ Moss and other plagiarism detection tools are not perfect, so a human should go 
 \end{table}
 
 
-
+\newpage
 
 \subsection{MOSS}
 
@@ -95,6 +95,14 @@ Moss clams to be one of the best cheating detection algorithms.
 \autocite{SMOSS}
 
 Moss supports the following programming languages C, C++, Java, C\#, Python, Visual Basic, Javascript, FORTRAN, ML, Haskell, Lisp, Scheme, Pascal, Modula2, Ada, Perl, TCL, Matlab, VHDL, Verilog, Spice, MIPS assembly, a8086 assembly, a8086 assembly and HCL2
+
+\subsubsection{Moss comparison algorithm}
+
+\subsubsection{The results}
+
+\subsubsection{Integration into an automated evaluation pipeline}
+
+\newpage
 
 \subsection{JPlag}
 
@@ -200,21 +208,43 @@ short matches are more likely to be spurious \autocite[p. 11]{JPlagP}.
 -has a cli -> can be automated
 -results as html files
 
+\newpage
+
 \subsection{AC2}
 
-"AC was born in the Escuela Politécnica Superior of the Universidad Autónoma de Madrid to deter and detect source-code plagiarism in programming assignments." \autocite{AC2}
+"AC is a source code plagiarism detection tool. It aids instructors and graders to detect plagiarism within a group of assignments written in languages such as C, C++, Java, PHP, XML, Python, ECMAScript, Pascal or VHDL (plaintext works too, but is less precise). AC incorporates multiple similarity detection algorithms found in the scientific literature, and allows their results to be visualized graphically." \autocite{AC2} The first version of "AC was born in the Escuela Politécnica Superior of the Universidad Autónoma de Madrid to deter and detect source-code plagiarism in programming assignments". \autocite{AC2}
+
+2016 AC version 2 was released. In the version 2.0 the developers switched to Maven and Antr4\footnote{\label{footnoteAntlr}"In computer-based language recognition, ANTLR (pronounced antler), or ANother Tool for Language Recognition, is a parser generator that uses LL(*) for parsing. ANTLR is the successor to the Purdue Compiler Construction Tool Set (PCCTS), first developed in 1989, and is under active development."\autocite{enwiki:1115716413}}. The developers of AC also moved their git repository to GitHub an internet hosting service for software development and version control.
+
+\textcolor{red}{Vor und Nachteile die auf der Github seite beschreiben wurden ergänzen.}
 
 
 \subsubsection{AC2 comparison algorithm}
 
-The output that AC2 generates is visualization base. So AC it will not provide a value like "percentage of copy" instead, "it will create graphical representations of the degree of similarity between student submissions within a group" \autocite{AC2}   
+In order for the AC algorithm to check files for equality, it allows adding folders or zip-files into it. Two filters can be applied to these files. The first filter selects the submissions that will be examined, and the second filter is determining which files are compared to each other. 
 
+For example student s1 has in his subfolder 'a.c' and student s2 has in his folder 'aa.c'. So the first filter should determine that each submission starts with the letter 's'. The second filter would look for files that ended with the string '.c'.
+
+When all submission and files are correctly grouped together the analysis part can start. "The default analysis (Zip NCD), uses \hyperref[sec:NCD]{normalized compression distance (NCD)} to detect redundancy (= similarity) between submissions. If AC2 knows the programming language of its source files, they will be tokenized prior to comparison. This will allow AC2 to ignore comments, whitespace and exact identifiers, so that simply renaming variables or altering formatting will not affect similarity calculations." \autocite{AC2wiki} 
+
+\paragraph{NCD (normalized compression distance)}
+\label{sec:NCD}
+
+\textcolor{red}{Todo: NCD beschreiben und sagen wie es in Ac2 verwendet wird.}
+
+\paragraph{Tokenization}
+
+If AC2 can recognize the programming language it will use a lexer and a parser to tokenize the text file. "AC2 uses Antlr4\footref{footnoteAntlr} grammars to generate lexers (= tokenizers) and parsers for languages." \autocite{AC2wiki} Therefore it is relatively easy to add support for a new programming language.
 
 \subsubsection{The results}
 
+The output that AC2 generates is visualization base. So AC it will not provide a value like 
+"percentage of copy" instead, "it will create graphical representations of the degree of similarity between 
+student submissions within a group" \autocite{AC2}   
+
 \subsubsection{Integration into an automated evaluation pipeline}
 
-
+\newpage
 
 \section{Conclusion}
 
