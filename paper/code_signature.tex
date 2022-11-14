@@ -170,35 +170,34 @@ The similarity between two programs can be calculated with the following formula
 \]
 \autocite[p. 13]{JPlagP}.
 
--similarity considers 100\% if the shorter string is completly covered \autocite[p. 13]{JPlagP}(See maths formula)
-
--Detail the specific optimizations
+{\color{red} -Detail the specific optimizations}
 
 \subsubsection{Preliminary results}
 
--comparisons without base code
--successfully discovered plagiarism for m0 91.49\% and 90.51\% match
--Other comparisons around 40\%
--need base code
+When using JPlag to check the similarity of known plagiarized code it had similarity value for the plagiarized m0 code of 91.49\& and 90.51\% while the
+none plagiarized code had similarity of around 40\%.
+\begin{figure}[h]
+	\includegraphics[scale=0.4]{figs/JPlag/JPlag_Overview.png}
+	\caption{The JPlag overview showing the similarities of m0 code}
+\end{figure}
+The results for m4 were somewhat less cleat since they had a similarity value of 84.77\& and 76.2\%. Which however would still lead to an investigation
+of the submitted code.
 
--m4 less clear 84.77\%-76.2\%
--need base code and another submission
+It should also be noted that no files were excluded and that there was no base code passed to JPlag, which explains the high similarity between unrelated
+programs as all submissions for a milestone use the same base code.
+
+{\color{red} 
+-need base code for m0
+-need base code and another submission for m4
+}
 
 \subsubsection{Integration into an automated evaluation pipeline}
 
--Can be executed locally
--Has a cli and an api -> allows automation
--Visualization in external web application -> might pose a problem
+JPlag probably show the most potential to be used in an automated pipeline as it not only provides a CLI but also a Java API, while also being able to be
+run locally\autocite{JPlagG} which means that there are no submission limits like in MOSS and that JPlag can be easily integrated into the existing pipeline.
+However, results are always saved as a Zip file and are view in a web application which can also be run locally. This poses a problem as???
 
--known unsuccessful attacks
-- Changing the comments
-- Changing the indentation
-- Method and variable name changes\autocite[Known successful attacks]{RMP}
-
--know successful attacks
-- Moving inline code to separate methods and vice versa
-- Inclusion of redundant program code
-- Changing the order of if-else blocks and case-blocks\autocite[Known unsuccessful attacks]{RMP}
+-How does the pipeline work, are files permanently saved or deleted after it finishes evaluation, can they be accessed
 
 \subsection{Plaggie}
 
@@ -210,6 +209,16 @@ The similarity between two programs can be calculated with the following formula
 -Uses standard LALR(1) parser generation\autocite{CUP}
 -GST with no special optimization attempts
 -Algorithm was extended to support exclusion of common code\autocite[4. Algorithm used]{RMP}
+
+-known unsuccessful attacks
+- Changing the comments
+- Changing the indentation
+- Method and variable name changes\autocite[Known successful attacks]{RMP}
+
+-know successful attacks
+- Moving inline code to separate methods and vice versa
+- Inclusion of redundant program code
+- Changing the order of if-else blocks and case-blocks\autocite[Known unsuccessful attacks]{RMP}
 
 \subsubsection{The results}
 
