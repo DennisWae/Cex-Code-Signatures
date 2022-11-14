@@ -147,20 +147,34 @@ These rule have some consequences. The first rule doesn't allow the matching of 
 the second rule makes the reordering of the source code not viable. Furthermore, the third rule is introduced since
 short matches are more likely to be spurious \autocite[p. 11]{JPlagP}.
 
+When these rule 3 is applied sequentially then a greedy algorithm consisting of two phases will be created.
 
-- Applying the third rule sequentially leads to a greedy algorithm consisting of two phases
-1. Two strings are searched for the biggest contigous matches. 3 nested Loops. Outer loop iterates over tokens in
-	string A. Second loop compares Token T to Tokens in String B. Inner loop, if identical Tokens, extends the match
-	as far as possible. Collects Set of longest common substrings
-2. Marks all matches of maximal length. All tokens are marked and can not be used for further matches. Satisfies rule 1
-- Repeat until no further matches found \autocite[p. 11]{JPlagP}
-- tile is a unique and permanent association of a substring from A with a matching substring from B\autocite[p. 3]{GST}
-- MinimumMatchLength is defined must be atleast 1, should probably be higher, since it is unlikely that such a match
-	will be significant \autocite[GST]{GST}
+In phase 1 the longest contiguous match in the two strings is searched. This is done by 3 nested loops. The outer loop iterates over all extracted
+tokens in string A, the second loop compares token T from string A with every token in string B. If two tokens are identical then the innermost loop
+extends this match as far as possible \autocite[p. 11]{JPlagP}. These matches are called tiles which are permanent and unique \autocite[p. 3]{GST}.
+
+In the second phase all matches of the maximal length are marked, when this happens all matched tokens are also marked and can't be used for any
+further matches. This satisfies the first rule. These two phases will be repeated until not further matches are found \autocite[p. 11]{JPlagP}.
+Also, of importance is the MinimumMatchLength, which defines the length at which maximal matches and any tile below the maximum matches are ignored.
+The smallest possible value for MinimumMatchLength is 1. However, in general this value should be higher than 1 since at that length it is unlikely
+that a match will be significant \autocite[p. 3]{GST}
+
+JPlag only considers two strings to match 100\% when the shorter string is completely matched by the longer string. The logic being that the longer string
+represents a program which has been entirely copied and then extended. 
+The similarity between two programs can be calculated with the following formula.
+\[
+	sim(A,B) = \frac{2+coverage(tiles)}{|A|+|B|}
+\]
+\[
+	coverage(tiles) = \sum_{match(a,b,length)\in tiles} length
+\]
+\autocite[p. 13]{JPlagP}.
 
 -similarity considers 100\% if the shorter string is completly covered \autocite[p. 13]{JPlagP}(See maths formula)
 
-\subsubsection{The results}
+-Detail the specific optimizations
+
+\subsubsection{Preliminary results}
 
 -comparisons without base code
 -successfully discovered plagiarism for m0 91.49\% and 90.51\% match
