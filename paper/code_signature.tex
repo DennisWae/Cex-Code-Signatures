@@ -82,7 +82,7 @@ Moss and other plagiarism detection tools are not perfect, so a human should go 
 	Plaggie & No  & No  & No  & Yes  & No     & No     & No  & No     & No         & Yes\tablefootnote{Plaggie is open source, therefore a custom tokenizer for different languages can be implemented.}            \\ \hline
 	AC2     & Yes & Yes & No  & Yes  & No     & Yes    & Yes & No     & No         & Yes             \\ \hline
 	\end{tabular}
-	\caption{\label{tab:table-name}[The native supported programming languages for each plagiarism detection algorithm]}
+	\caption{\label{tab:AlgorithmLanguageSupportTable}[The native supported programming languages for each plagiarism detection algorithm]}
 \end{table}
 
 
@@ -243,6 +243,7 @@ However, results are always saved as a Zip file and are view in a web applicatio
 
 
 \subsubsection{AC2 comparison algorithm}
+\label{sec:AC2ComparisonAlgorithm}
 
 In order for the AC algorithm to check files for equality, it allows adding folders or zip-files into it. Two filters can be applied to these files. The first filter selects the submissions that will be examined, and the second filter is determining which files are compared to each other. 
 
@@ -261,18 +262,64 @@ If AC2 can recognize the programming language it will use a lexer and a parser t
 
 \subsubsection{Preliminary results}
 
-The output that AC2 generates is visualization base. So AC it will not provide a value like 
-"percentage of copy" instead, "it will create graphical representations of the degree of similarity between 
-student submissions within a group" \autocite{AC2}   
+In order to present the advantages of Ac2, several projects were compared using the Ac2 algorithm. As explained in section~\ref{sec:AC2ComparisonAlgorithm} \nameref{sec:AC2ComparisonAlgorithm}, the filters were used to select and group the submissions. After passing the project files, the algorithm analyzes them and creates an output window. The output that AC2 generates is mainly visual based. So Ac "will create graphical representations of the degree of similarity between student submissions within a group". \autocite{AC2}. See figure~\ref{fig:AC2R1} and figure~\ref{fig:AC2R2}.
 
 \begin{figure}[h]
-	\includegraphics[scale=0.4]{figs/JPlag/JPlag_Overview.png}
-	\caption{The JPlag overview showing the similarities of m0 code}
+	\includegraphics[scale=0.4]{figs/AC2/M0_1.png}
+	\caption{The graphical output of Ac2 from milestone [0]}
+	\label{fig:AC2R1}
 \end{figure}
 
-\subsubsection{Integration into an automated evaluation pipeline}
+Figure~\ref{fig:AC2R1} shows milestone 0 and how the different projects have copied from each other. This suggests that project N1 has maybe copied its code form G2 and N2 from G2.
+
+
+\begin{figure}[h]
+	\includegraphics[scale=0.4]{figs/AC2/M4_1.png}
+	\caption{The graphical output of Ac2 from milestone [4]}
+	\label{fig:AC2R2}
+\end{figure}
+
+Figure~\ref{fig:AC2R2} illustrates that G1, N1 and N2 have probably copied from each other, since a correlation exists between the 3 projects. This again illustrates the advantage of Ac2 over the other plagiarism detection programs, since it is easier to detect multiple correlations between projects.
+
+\begin{table}[h]
+	\begin{tabular}{|l|l|l|}
+	\hline
+	One           & The other     & Distance \\ \hline
+	ST2M0-Geber1  & ST2M0-Nehmer1 & 0.2926   \\ \hline
+	ST2M0-Geber2  & ST2M0-Nehmer2 & 0.4609   \\ \hline
+	ST2M0-Geber1  & ST2M0-Nehmer2 & 0.6302   \\ \hline
+	ST2M0-Nehmer2 & ST2M0-Nehmer1 & 0.6705   \\ \hline
+	ST2M0-Geber2  & ST2M0-Geber1  & 0.6718   \\ \hline
+	ST2M0-Geber2  & ST2M0-Nehmer1 & 0.6811   \\ \hline
+	\end{tabular}
+	\caption{\label{tab:Ac2DistanceTableM0}[Table of Milestone [0] distance between projects]}
+\end{table}
+
+\begin{table}[h]
+	\begin{tabular}{|l|l|l|}
+	\hline
+	One           & The other     & Distance \\ \hline
+	ST2M4-Geber1  & ST2M4-Nehmer2 & 0.6538   \\ \hline
+	ST2M4-Geber1  & ST2M4-Nehmer1 & 0.6603   \\ \hline
+	ST2M4-Nehmer2 & ST2M4-Nehmer1 & 0.6957   \\ \hline
+	ST2M4-Geber2  & ST2M4-Nehmer1 & 0.6809   \\ \hline
+	ST2M4-Geber1  & ST2M4-Geber3  & 0.8647   \\ \hline
+	ST2M4-Geber3  & ST2M4-Nehmer1 & 0.8657   \\ \hline
+	ST2M4-Geber2  & ST2M4-Geber3  & 0.8772   \\ \hline
+	ST2M4-Geber3  & ST2M4-Nehmer2 & 0.8792   \\ \hline
+	ST2M4-Geber2  & ST2M4-Nehmer2 & 0.8809   \\ \hline
+	ST2M4-Geber2  & ST2M4-Geber1  & 0.8823   \\ \hline
+
+	\end{tabular}
+	\caption{\label{tab:Ac2DistanceTableM4}[Table of Milestone [4] distance between projects]}
+\end{table}
+
+Table~\ref{tab:Ac2DistanceTableM0} and table~\ref{tab:Ac2DistanceTableM4} show how far apart the individual projects are. This distinguishes Ac2 from other plagiarism detection programs, as they often reflect the similarity in percent to the user.
 
 \newpage
+
+\newpage
+
 
 \section{Conclusion}
 
