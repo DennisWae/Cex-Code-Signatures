@@ -259,11 +259,16 @@ When all submission and files are correctly grouped together the analysis part c
 
 If AC2 can recognize the programming language it will use a lexer and a parser to tokenize the text file. "AC2 uses Antlr4\footref{footnoteAntlr} grammars to generate lexers (= tokenizers) and parsers for languages." \autocite{AC2wiki} Therefore it is relatively easy to add support for a new programming language.
 
-\subsubsection{The results}
+\subsubsection{Preliminary results}
 
 The output that AC2 generates is visualization base. So AC it will not provide a value like 
 "percentage of copy" instead, "it will create graphical representations of the degree of similarity between 
 student submissions within a group" \autocite{AC2}   
+
+\begin{figure}[h]
+	\includegraphics[scale=0.4]{figs/JPlag/JPlag_Overview.png}
+	\caption{The JPlag overview showing the similarities of m0 code}
+\end{figure}
 
 \subsubsection{Integration into an automated evaluation pipeline}
 
