@@ -172,24 +172,81 @@ The similarity between two programs can be calculated with the following formula
 
 {\color{red} -Detail the specific optimizations}
 
+GST has a worst case complexity of \(O(n^3)\)\autocite[p. 5]{GST} and a best case complexity of \(O(n^2)\)\autocite[p. 14]{JPlagP}.
+
+- Uses Karp-Robin -> average O(n pow 2)
+- all hash values for substring with a length of MML are computed for both strings
+- each hash value from A is compared with each value from B, if two values are the same possible match beginning at
+that token has been found
+- possible match verified token by token
+- attempt to expand match as far as possible
+- Quadratic number of hashes need to be compared -> a hash table is used for locating the substring from B -> liner amount of steps
+
+- Further optimizations
+- token by token comparison backwards after maxmatch -> all matches below maxmatches not relevant
+- A is always chosen to be shorter than B -> A always traversed completely B only accessed through hash table
+
+- worst case still O(n pow 3) average case O(n) \autocite[p. 14]{JPlagP}
 \subsubsection{Preliminary results}
 
-When using JPlag to check the similarity of known plagiarized code it had similarity value for the plagiarized m0 code of 91.49\& and 90.51\% while the
-none plagiarized code had similarity of around 40\%.
+JPlag displays its result in a list with all possible combinations of all submissions while also showing the amount of pairs which are in a certain
+similarity range. The different pairs can be further investigated allowing the user to see the specific matched code.
+
 \begin{figure}[h]
-	\includegraphics[scale=0.4]{figs/JPlag/JPlag_Overview.png}
+	\centering
+	\includegraphics[scale=0.3]{figs/JPlag/JPlag_Overview.png}
 	\caption{The JPlag overview showing the similarities of m0 code}
 \end{figure}
-The results for m4 were somewhat less cleat since they had a similarity value of 84.77\& and 76.2\%. Which however would still lead to an investigation
+When using JPlag to check the similarity of known plagiarized code it had similarity value for the plagiarized m0 code of 91.49\& and 90.51\% while the
+none plagiarized code had similarity of around 40\%.
+The results for m4 were somewhat less clear since they had a similarity value of 84.77\% and 76.2\%. Which should still lead to an investigation
 of the submitted code.
 
-It should also be noted that no files were excluded and that there was no base code passed to JPlag, which explains the high similarity between unrelated
-programs as all submissions for a milestone use the same base code.
+\begin{table}[h]
+	\centering
+	\begin{tabular}{{|l|l|l|l|}}
+		\hline
+		Submission 1  & Submission 2  & Similarity  & Similarity with base code\\ \hline
+		ST2M0-Geber1  & ST2M0-Nehmer1 & 91.49\%  & 88.11\% \\ \hline
+		ST2M0-Nehmer2  & ST2M0-Geber2 & 90.51\%  & 86.11\% \\ \hline
+		ST2M0-Geber2  & ST2M0-Geber1 & 41.84\%   & 16.34\% \\ \hline
+		ST2M0-Geber2 & ST2M0-Nehmer1 & 41.04\%   & 16.21\% \\ \hline
+		ST2M0-Nehmer2  & ST2M0-Geber1  & 40.96\% & 14.61\% \\ \hline
+		ST2M0-Nehmer2  & ST2M0-Nehmer1 & 40.18\% & 14.56\% \\ \hline
+	\end{tabular}
+	\caption{\label{tab:JPlagSimilarityTableM0}[Table of Milestone [0] showing the similarity between submissions]}
+\end{table}
 
-{\color{red} 
--need base code for m0
--need base code and another submission for m4
-}
+It should also be noted that no files were excluded and that there was no base code passed to JPlag, which explains the high similarity between unrelated
+programs as all submissions for a milestone use the same base code. When excluding common base code then the results for m0 become significantly more clear
+with the known plagiarism having a similarity value between 86 and 89 percent while the none plagiarized submissions have a value between 14 and 17 percent.
+
+Looking at m4 with the base code excluded still shows a less clear image. With the known plagiarized have a similarity value which is lower by 9 to 7 percentage
+points and with the none plagiarized submissions having a similarity value which lower by 18 to 16 percentage points. All of which are considerably smaller percentage
+point drops then those observed in m0. It is not clear why exactly the similarity values of m4 are closer to each other in m4 and why the difference between them doesn't
+grow that much when excluding the base code in comparison to m0.
+
+{\color{red}{Possible theories why yes no? Ask Stefan}}
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{|l|l|l|l|}
+		\hline
+		Submission 1   & Submission 2  & Similarity  & Similarity with base code\\ \hline
+		ST2M4-Nehmer2  & ST2M4-Geber   & 84.47\% & 77.97\% \\ \hline
+		ST2M4-Nehmer2  & ST2M4-Nehmer1 & 77.48\% & 68.30\% \\ \hline
+		ST2M4-Geber    & ST2M4-Nehmer1 & 76.20\% & 67.42\% \\ \hline
+		ST2M4-Nehmer2  & ST2M4-NoPlag2 & 49.00\% & 32.70\% \\ \hline
+		ST2M4-Geber    & ST2M4-NoPlag2 & 47.20\% & 30.97\% \\ \hline
+		ST2M4-Nehmer1  & ST2M4-NoPlag2 & 46.16\% & 29.90\% \\ \hline
+		ST2M4-Nehmer1  & ST2M4-NoPlag1 & 41.82\% & 25.33\% \\ \hline
+		ST2M4-Nehmer2  & ST2M4-NoPlag1 & 40.55\% & 22.78\% \\ \hline
+		ST2M4-Geber    & ST2M4-NoPlag1 & 39.99\% & 22.69\% \\ \hline
+		ST2M4-NoPlag2  & ST2M4-NoPlag1 & 36.40\% & 20.15\% \\ \hline
+	
+	\end{tabular}
+	\caption{\label{tab:JPlagSimilarityTableM4}[Table of Milestone [4] showing the similarity between submissions]}
+\end{table}
 
 \subsubsection{Integration into an automated evaluation pipeline}
 
@@ -312,13 +369,13 @@ Figure~\ref{fig:AC2R2} illustrates that G1, N1 and N2 have probably copied from 
 				ST2M4-Geber1  & ST2M4-Nehmer2 & 0.6538   \\ \hline
 				ST2M4-Geber1  & ST2M4-Nehmer1 & 0.6603   \\ \hline
 				ST2M4-Nehmer2 & ST2M4-Nehmer1 & 0.6957   \\ \hline
-				ST2M4-Geber2  & ST2M4-Nehmer1 & 0.6809   \\ \hline
-				ST2M4-Geber1  & ST2M4-Geber3  & 0.8647   \\ \hline
-				ST2M4-Geber3  & ST2M4-Nehmer1 & 0.8657   \\ \hline
-				ST2M4-Geber2  & ST2M4-Geber3  & 0.8772   \\ \hline
-				ST2M4-Geber3  & ST2M4-Nehmer2 & 0.8792   \\ \hline
-				ST2M4-Geber2  & ST2M4-Nehmer2 & 0.8809   \\ \hline
-				ST2M4-Geber2  & ST2M4-Geber1  & 0.8823   \\ \hline
+				ST2M4-NoPlag2  & ST2M4-Nehmer1 & 0.6809   \\ \hline
+				ST2M4-Geber1  & ST2M4-NoPlag1  & 0.8647   \\ \hline
+				ST2M4-NoPlag1  & ST2M4-Nehmer1 & 0.8657   \\ \hline
+				ST2M4-NoPlag2  & ST2M4-NoPlag1  & 0.8772   \\ \hline
+				ST2M4-NoPlag1  & ST2M4-Nehmer2 & 0.8792   \\ \hline
+				ST2M4-NoPlag2  & ST2M4-Nehmer2 & 0.8809   \\ \hline
+				ST2M4-NoPlag2  & ST2M4-Geber1  & 0.8823   \\ \hline
 			
 			\end{tabular}
 		}
