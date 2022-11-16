@@ -239,8 +239,13 @@ However, results are always saved as a Zip file and are view in a web applicatio
 
 2016 AC version 2 was released. In the version 2.0 the developers switched to Maven and Antr4\footnote{\label{footnoteAntlr}"In computer-based language recognition, ANTLR (pronounced antler), or ANother Tool for Language Recognition, is a parser generator that uses LL(*) for parsing. ANTLR is the successor to the Purdue Compiler Construction Tool Set (PCCTS), first developed in 1989, and is under active development."\autocite{enwiki:1115716413}}. The developers of AC also moved their git repository to GitHub an internet hosting service for software development and version control.
 
-\textcolor{red}{Vor und Nachteile die auf der Github seite beschreiben wurden ergänzen.}
+AC2 lists some advantages over the other plagiarism detection tools on their GitHub page. In this regard, it is
 
+\begin{itemize}
+	\item "local, and does not require sending data to remote servers (not the case of Moss)local, and does not require sending data to remote servers (not the case of Moss)"
+	\item "robust, using Normalized Compression Distance as its main measure-of-similarity, but with the possibility of integrating other, additional measures to gain better pictures of what is going on (JPlag, Moss and Plaggie have hard-coded analyses, mostly based on sub-string matching after tokenization)."
+	\item "heavy on information visualization. AC will not provide "percentage of copy"; instead, it will create graphical representations of the degree of similarity between student submissions within a group, so instructors can build their own explanations regarding what really happened (see here and here for papers on AC's visualizations)."
+\end{itemize}\autocite{AC2}
 
 \subsubsection{AC2 comparison algorithm}
 \label{sec:AC2ComparisonAlgorithm}
@@ -254,7 +259,7 @@ When all submission and files are correctly grouped together the analysis part c
 \paragraph{NCD (normalized compression distance)}
 \label{sec:NCD}
 
-\textcolor{red}{Todo: NCD beschreiben und sagen wie es in Ac2 verwendet wird.}
+\textcolor{red}{Todo: NCD beschreiben und sagen wie es in AC2 verwendet wird.}
 
 \paragraph{Tokenization}
 
@@ -262,24 +267,23 @@ If AC2 can recognize the programming language it will use a lexer and a parser t
 
 \subsubsection{Preliminary results}
 
-In order to present the advantages of Ac2, several projects were compared using the Ac2 algorithm. As explained in section~\ref{sec:AC2ComparisonAlgorithm} \nameref{sec:AC2ComparisonAlgorithm}, the filters were used to select and group the submissions. After passing the project files, the algorithm analyzes them and creates an output window. The output that AC2 generates is mainly visual based. So Ac "will create graphical representations of the degree of similarity between student submissions within a group". \autocite{AC2}. See figure~\ref{fig:AC2R1} and figure~\ref{fig:AC2R2}.
+In order to present the advantages of AC2, several projects were compared using the AC2 algorithm. As explained in section~\ref{sec:AC2ComparisonAlgorithm} \nameref{sec:AC2ComparisonAlgorithm}, the filters were used to select and group the submissions. After passing the project files, the algorithm analyzes them and creates an output window. The output that AC2 generates is mainly visual based. So Ac "will create graphical representations of the degree of similarity between student submissions within a group". \autocite{AC2}. See figure~\ref{fig:AC2R1} and figure~\ref{fig:AC2R2}.
 
 \begin{figure}[h]
 	\includegraphics[scale=0.4]{figs/AC2/M0_1.png}
-	\caption{The graphical output of Ac2 from milestone [0]}
+	\caption{The graphical output of AC2 from milestone [0]}
 	\label{fig:AC2R1}
 \end{figure}
 
 Figure~\ref{fig:AC2R1} shows milestone 0 and how the different projects have copied from each other. This suggests that project N1 has maybe copied its code form G2 and N2 from G2.
 
-
 \begin{figure}[h]
 	\includegraphics[scale=0.4]{figs/AC2/M4_1.png}
-	\caption{The graphical output of Ac2 from milestone [4]}
+	\caption{The graphical output of AC2 from milestone [4]}
 	\label{fig:AC2R2}
 \end{figure}
 
-Figure~\ref{fig:AC2R2} illustrates that G1, N1 and N2 have probably copied from each other, since a correlation exists between the 3 projects. This again illustrates the advantage of Ac2 over the other plagiarism detection programs, since it is easier to detect multiple correlations between projects.
+Figure~\ref{fig:AC2R2} illustrates that G1, N1 and N2 have probably copied from each other, since a correlation exists between the 3 projects. This again illustrates the advantage of AC2 over the other plagiarism detection programs, since it is easier to detect multiple correlations between projects.
 
 \begin{table}[h]
 	\begin{tabular}{|l|l|l|}
@@ -292,7 +296,7 @@ Figure~\ref{fig:AC2R2} illustrates that G1, N1 and N2 have probably copied from 
 	ST2M0-Geber2  & ST2M0-Geber1  & 0.6718   \\ \hline
 	ST2M0-Geber2  & ST2M0-Nehmer1 & 0.6811   \\ \hline
 	\end{tabular}
-	\caption{\label{tab:Ac2DistanceTableM0}[Table of Milestone [0] distance between projects]}
+	\caption{\label{tab:AC2DistanceTableM0}[Table of Milestone [0] distance between projects]}
 \end{table}
 
 \begin{table}[h]
@@ -311,12 +315,10 @@ Figure~\ref{fig:AC2R2} illustrates that G1, N1 and N2 have probably copied from 
 	ST2M4-Geber2  & ST2M4-Geber1  & 0.8823   \\ \hline
 
 	\end{tabular}
-	\caption{\label{tab:Ac2DistanceTableM4}[Table of Milestone [4] distance between projects]}
+	\caption{\label{tab:AC2DistanceTableM4}[Table of Milestone [4] distance between projects]}
 \end{table}
 
-Table~\ref{tab:Ac2DistanceTableM0} and table~\ref{tab:Ac2DistanceTableM4} show how far apart the individual projects are. This distinguishes Ac2 from other plagiarism detection programs, as they often reflect the similarity in percent to the user.
-
-\newpage
+Table~\ref{tab:AC2DistanceTableM0} and table~\ref{tab:AC2DistanceTableM4} show how far apart the individual projects are. This distinguishes AC2 from other plagiarism detection programs, as they often reflect the similarity in percent to the user.
 
 \newpage
 
