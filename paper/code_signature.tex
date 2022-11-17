@@ -90,19 +90,55 @@ Moss and other plagiarism detection tools are not perfect, so a human should go 
 
 \subsection{MOSS}
 
-Moss clams to be one of the best cheating detection algorithms.
-"The algorithm behind moss is a significant improvement over other cheating detection algorithms (at least, over those known to us)."
-\autocite{SMOSS}
+"Moss (for a Measure Of Software Similarity) is an automatic system for determining the similarity of programs. To date, the main application of Moss has been in detecting plagiarism in programming classes. Since its development in 1994, Moss has been very effective in this role." \autocite{SMOSS}
 
-Moss supports the following programming languages C, C++, Java, C\#, Python, Visual Basic, Javascript, FORTRAN, ML, Haskell, Lisp, Scheme, Pascal, Modula2, Ada, Perl, TCL, Matlab, VHDL, Verilog, Spice, MIPS assembly, a8086 assembly, a8086 assembly and HCL2
+Moss clams to be one of the best cheating detection algorithms.\footnote{"The algorithm behind moss is a significant improvement over other cheating detection algorithms (at least, over those known to us)." \autocite{SMOSS}} Moreover, moss supports the largest native programming languages variety\footnote{Of the four plagiarism detection programs listed in this paper}, but no other languages can be added. Moss supports the following languages: C, C++, Java, C\#, Python, Visual Basic, Javascript, FORTRAN, ML, Haskell, Lisp, Scheme, Pascal, Modula2, Ada, Perl, TCL, Matlab, VHDL, Verilog, Spice, MIPS assembly, a8086 assembly, a8086 assembly and HCL2.
+
+A unique feature of Moss is that it "is being provided as an Internet service. The service has been designed to be very easy to use[...]" \autocite{SMOSS}. In order to use this internet service, a Perl script must be executed which passes the files to the server. "In response to a query the Moss server produces HTML pages listing pairs of programs with similar code. Moss also highlights individual passages in programs that appear the same, making it easy to quickly compare the files. Finally, Moss can automatically eliminate matches to code that one expects to be shared (e.g., libraries or instructor-supplied code), thereby eliminating false positives that arise from legitimate sharing of code." \autocite{SMOSS}
+
+A disadvantage of Moss is that since Nov 13, 2022 there is a transmission limit of 100 submissions per day per user. This could cause problems if one wants to integrate Moss into an automated process.
 
 \subsubsection{Moss comparison algorithm}
 
-\subsubsection{The results}
+\subsubsection{Preliminary results}
 
-\subsubsection{Integration into an automated evaluation pipeline}
+\begin{table}[ht]
+	\centering
+	\begin{tabular}{|l|l|l|}
+	\hline
+	File 1              & File 2              & Lines Matched \\ \hline
+	ST2M0-Geber1(81\%)  & ST2M0-Nehmer1(73\%) & 311           \\ \hline
+	ST2M0-Geber2(62\%)  & ST2M0-Nehmer2(66\%) & 276           \\ \hline
+	ST2M0-Geber1(14\%)  & ST2M0-Geber2(12\%)  & 81            \\ \hline
+	ST2M0-Geber2(11\%)  & ST2M0-Nehmer1(12\%) & 76            \\ \hline
+	ST2M0-Nehmer1(9\%)  & ST2M0-Nehmer2(9\%)  & 68            \\ \hline
+	ST2M0-Geber1(9\%)   & ST2M0-Nehmer2(8\%)  & 62            \\ \hline
+	\end{tabular}
+	\caption{\label{tab:MossTableM0}[Table of Milestone [0] distance between projects]}
+\end{table}
 
-\newpage
+\begin{table}[ht]
+	\centering
+	\begin{tabular}{|l|l|l|}
+	\hline
+	File 1              & File 2              & Lines Matched \\ \hline
+	ST2M4-Geber1(54\%)  & ST2M4-Nehmer2(57\%) & 938           \\ \hline
+	ST2M4-Geber1(52\%)  & ST2M4-Nehmer1(52\%) & 908           \\ \hline
+	ST2M4-Nehmer1(51\%) & ST2M4-Nehmer2(54\%) & 884           \\ \hline
+	ST2M4-Geber2(13\%)  & ST2M4-Nehmer2(17\%) & 372           \\ \hline
+	ST2M4-Geber2(12\%)  & ST2M4-Nehmer1(15\%) & 363           \\ \hline
+	ST2M4-Geber1(14\%)  & ST2M4-Geber2(11\%)  & 333           \\ \hline
+	ST2M4-Geber2(8\%)   & ST2M4-Geber3(6\%)   & 254           \\ \hline
+	ST2M4-Geber3(6\%)   & ST2M4-Nehmer1(9\%)  & 253           \\ \hline
+	ST2M4-Geber1(9\%)   & ST2M4-Geber3(6\%)   & 238           \\ \hline
+	ST2M4-Geber3(5\%)   & ST2M4-Nehmer2(9\%)  & 239           \\ \hline
+
+	\end{tabular}
+	\caption{\label{tab:MossTableM4}[Table of Milestone [4] distance between projects]}
+\end{table}
+
+
+\clearpage
 
 \subsection{JPlag}
 
@@ -214,6 +250,7 @@ of the submitted code.
 		ST2M0-Nehmer2  & ST2M0-Geber1  & 40.96\% & 14.61\% \\ \hline
 		ST2M0-Nehmer2  & ST2M0-Nehmer1 & 40.18\% & 14.56\% \\ \hline
 	\end{tabular}
+	\centering
 	\caption{\label{tab:JPlagSimilarityTableM0}[Table of Milestone [0] showing the similarity between submissions]}
 \end{table}
 
