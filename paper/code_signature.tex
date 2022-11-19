@@ -100,6 +100,10 @@ A disadvantage of Moss is that since Nov 13, 2022 there is a transmission limit 
 
 \subsubsection{Moss comparison algorithm}
 
+"Moss currently uses robust winnowing, which is more efficient and scalable (in the sense that it selects fewer fingerprints for the same quality of results) than previous algorithms we have tried. There are a few issues involved in making such a system work well in practice. For this application, positional information (document and line number) is stored with each selected fingerprint. The first step builds an index mapping fingerprints to locations for all documents, much like the inverted index built by search engines mapping words to positions in documents. In the second step, each document is fingerprinted a second time and the selected fingerprints are looked up in the index; this gives the list of all matching fingerprints for each document.
+
+Now the list of matching fingerprints for a document d may contain fingerprints from many different documents d1,d2,.... In the next step, the list of matching fingerprints for each document d is sorted by document and the matches for each pair of documents (d,d1),(d,d2),... is formed. Matches between documents are rank-ordered by size (number of fingerprints) and the largest matches are reported to the user." \autocite{WMOSS}
+
 \subsubsection{Preliminary results}
 
 \begin{table}[ht]
