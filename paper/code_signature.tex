@@ -66,9 +66,34 @@ Moss and other plagiarism detection tools are not perfect, so a human should go 
 
 \subsection{Use Case}
 
+- Java/Spring exercises in ST2
+- Automated pipeline for evaluation and creation of tasks
+- minor attempts to stop plagiarism -> random selection of exercise terms -> pipeline requires these terms
+- otherwise no differences between exercises
+- plagiarism attempts did occur -> high amount of submissions > 100(ask for number) makes it difficult to detect
+
 \subsection{Software Experiment}
 
-\section{Criteria for Evaluation}
+- attempt to find best tool to integrate into divekit
+- evaluate know plagiarisms
+- evaluate all submission for the ST2 module -> look for best results
+- systematically create plagiarisms to evaluate the tools' robustness
+
+- Plagiarism s
+- rename variables and method -> mandatory for the tool due to the exercise design
+- change control structures -> for loop to while, if to switch etc.
+- duplicate code
+- extract methods from other methods
+- combine methods
+- move methods(create new classes)
+
+\subsection{Criteria for Evaluation}
+
+- must be able to evaluate Java 11 and spring exercises
+- Known plagiarisms must be detected
+- must be able to evaluate over 100(?) exercises in a reasonable speed
+- must be able to be integrated into the divekit pipeline or workflow
+{\color{red} ask Stefan for his own criteria}
 
 \section{Evaluation of the different Tools}
 
@@ -212,21 +237,15 @@ The similarity between two programs can be calculated with the following formula
 
 {\color{red} -Detail the specific optimizations}
 
-GST has a worst case complexity of \(O(n^3)\)\autocite[p. 5]{GST} and a best case complexity of \(O(n^2)\)\autocite[p. 14]{JPlagP}.
+GST has a worst-case complexity of \(O(n^3)\)\autocite[p. 5]{GST} and a best-case complexity of \(O(n^2)\)\autocite[p. 14]{JPlagP}. The worst-case
+complexity can't be improved the average-case complexity is improved to \(O(n)\) by implementing an idea from the Karp-Rabin algorithm(add foot note)
+\autocite*[p. 14]{JPlagP}. The modified algorithm computes the hash values for all substrings of length MML in string A and B. Then each value from
+string A is compared with each value from string B. String A is always chosen to be shorter than B because string A will always be traversed completely
+while string B will be accessed through a hash table, which will further decrease the complexity. If two hash values are the same then a potential possible match has
+been found beginning at that token where the values match. The possible match is then verified by comparing the substrings token by token. 
+The modified algorithm doesn't start the comparison from the beginning but rather from the back after the maxmatch tokens since all matches before that
+are not interesting for the algorithm. The algorithms also attempts to simultaneously expand the match further \autocite[p. 14]{JPlagP}.
 
-- Uses Karp-Robin -> average O(n pow 2)
-- all hash values for substring with a length of MML are computed for both strings
-- each hash value from A is compared with each value from B, if two values are the same possible match beginning at
-that token has been found
-- possible match verified token by token
-- attempt to expand match as far as possible
-- Quadratic number of hashes need to be compared -> a hash table is used for locating the substring from B -> liner amount of steps
-
-- Further optimizations
-- token by token comparison backwards after maxmatch -> all matches below maxmatches not relevant
-- A is always chosen to be shorter than B -> A always traversed completely B only accessed through hash table
-
-- worst case still O(n pow 3) average case O(n) \autocite[p. 14]{JPlagP}
 \subsubsection{Preliminary results}
 
 JPlag displays its result in a list with all possible combinations of all submissions while also showing the amount of pairs which are in a certain
