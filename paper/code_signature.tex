@@ -242,8 +242,6 @@ The similarity between two programs can be calculated with the following formula
 \]
 \autocite[p. 13]{JPlagP}.
 
-{\color{red} -Detail the specific optimizations}
-
 GST has a worst-case complexity of \(O(n^3)\)\autocite[p. 5]{GST} and a best-case complexity of \(O(n^2)\)\autocite[p. 14]{JPlagP}. The worst-case
 complexity can't be improved the average-case complexity is improved to \(O(n)\) by implementing an idea from the Karp-Rabin algorithm(add foot note)
 \autocite*[p. 14]{JPlagP}. The modified algorithm computes the hash values for all substrings of length MML in string A and B. Then each value from
@@ -293,8 +291,6 @@ points and with the none plagiarized submissions having a similarity value which
 point drops then those observed in m0. It is not clear why exactly the similarity values of m4 are closer to each other in m4 and why the difference between them doesn't
 grow that much when excluding the base code in comparison to m0.
 
-{\color{red}{Possible theories why yes no? Ask Stefan}}
-
 \begin{table}[h]
 	\centering
 	\begin{tabular}{|l|l|l|l|}
@@ -315,45 +311,50 @@ grow that much when excluding the base code in comparison to m0.
 	\caption{\label{tab:JPlagSimilarityTableM4}[Table of Milestone [4] showing the similarity between submissions]}
 \end{table}
 
-\subsubsection{Integration into an automated evaluation pipeline}
+%\subsubsection{Integration into an automated evaluation pipeline}
 
-JPlag probably show the most potential to be used in an automated pipeline as it not only provides a CLI but also a Java API, while also being able to be
-run locally\autocite{JPlagG} which means that there are no submission limits like in MOSS and that JPlag can be easily integrated into the existing pipeline.
-However, results are always saved as a Zip file and are view in a web application which can also be run locally. This poses a problem as???
+%JPlag probably show the most potential to be used in an automated pipeline as it not only provides a CLI but also a Java API, while also being able to be
+%run locally\autocite{JPlagG} which means that there are no submission limits like in MOSS and that JPlag can be easily integrated into the existing pipeline.
+%However, results are always saved as a Zip file and are view in a web application which can also be run locally. This poses a problem as???
 
--How does the pipeline work, are files permanently saved or deleted after it finishes evaluation, can they be accessed
+%-How does the pipeline work, are files permanently saved or deleted after it finishes evaluation, can they be accessed
 
 \subsection{Plaggie}
 
--Was the only open source tool when release\autocite{PLAGGIE}, JPlag now also open source
+Plaggie was developed by Aleksi Ahtiainen, Sami Surakka and MIkko Rahikainen from the Helsinki University of Technology in 2006 in order to detect cheating in
+Java exercises. It was written in Java 5 and can analyze Java 5 applications \autocite[3. Current list of features]{RMP}. With its most important
+contribution at the time being the only open source plagiarism tool that could be run locally \autocite[p. 141]{PLAGGIE}.
 
 \subsubsection{The Algorithm}
 
--Uses CUP as a Parser
--Uses standard LALR(1) parser generation\autocite{CUP}
--GST with no special optimization attempts
--Algorithm was extended to support exclusion of common code\autocite[4. Algorithm used]{RMP}
+Plaggie uses CUP as a parser for which is a LALR parser that implements standard LALR(1) parser generation \autocite{CUP}. The algorithm to compare
+the tokens extracted by CUP is GST which has been extended to exclude existing code but doesn't feature any other optimizations \autocite[4. Algorithm used]{RMP}.
 
--known unsuccessful attacks
-- Changing the comments
-- Changing the indentation
-- Method and variable name changes\autocite[Known successful attacks]{RMP}
+Plaggie display the similarity of individual files and entire submissions. With the similarity of two files being the percentage of the matched tokens
+in comparison to the total number of tokens in the file. The similarity of the submission A is the average of the best match of each file with the
+submission similarity of submission B being the average of the corresponding similarity values in submission B \autocite*[4. Algorithm used]{RMP}. 
 
--know successful attacks
-- Moving inline code to separate methods and vice versa
-- Inclusion of redundant program code
-- Changing the order of if-else blocks and case-blocks\autocite[Known unsuccessful attacks]{RMP}
+\subsubsection{Preliminary results}
 
-\subsubsection{The results}
+We didn't manage to run Plaggie as it hasn't been updated since 2006 and we ran a newer version of Java which caused compilation error. However, based
+on the fact that Plaggie only supports Java 1.5 and that JPlag has since been made open source Plaggie would not be our tool of choice since there are
+more modern tools which are being actively maintained and have support for more modern programming languages.
 
--TODO still have to run it.
+There are some know successful and unsuccessful attacks identified by Plaggie's developers. With the unsuccessful attacks being:
+\begin{itemize}
+	\item "Changing the comments"
+	\item "Changing the indentation"
+	\item "Method and variable name changes"
+	\item "Renaming the classes"
+\end{itemize} \autocite*[Known successful attacks]{RMP}
 
-\subsubsection{Integration into an automated evaluation pipeline}
-
--only Java 1.5\autocite{PLAGGIE,RMP}
--no further development since 2006
--has a cli -> can be automated
--results as html files
+and the unsuccessful attacks being:
+\begin{itemize}
+	\item "Moving inline code to separate methods and vice versa"
+	\item "Inclusion of redundant program code"
+	\item "Changing the order of if-else blocks and case-blocks"
+\end{itemize}
+\autocite[Known unsuccessful attacks]{RMP}
 
 \newpage
 
