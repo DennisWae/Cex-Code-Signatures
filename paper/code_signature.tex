@@ -236,7 +236,7 @@ The similarity between two programs can be calculated with the following formula
 \autocite[p. 13]{JPlagP}.
 
 GST has a worst-case complexity of \(O(n^3)\)\autocite[p. 5]{GST} and a best-case complexity of \(O(n^2)\)\autocite[p. 14]{JPlagP}. The worst-case
-complexity can't be improved the average-case complexity is improved to \(O(n)\) by implementing an idea from the Karp-Rabin algorithm(add foot note)
+complexity can't be improved the average-case complexity is improved to \(O(n)\) by implementing an idea from the Karp-Rabin algorithm\footnote{The Karp-Rabin algorithm is an algorithm which is used to find an string pattern in a text\autocite{KRA}.}
 \autocite*[p. 14]{JPlagP}. The modified algorithm computes the hash values for all substrings of length MML in string A and B. Then each value from
 string A is compared with each value from string B. String A is always chosen to be shorter than B because string A will always be traversed completely
 while string B will be accessed through a hash table, which will further decrease the complexity. If two hash values are the same then a potential possible match has
@@ -320,7 +320,8 @@ contribution at the time being the only open source plagiarism tool that could b
 
 \subsubsection{The Algorithm}
 
-Plaggie uses CUP as a parser for which is a LALR parser that implements standard LALR(1) parser generation \autocite{CUP}. The algorithm to compare
+Plaggie uses CUP as a parser which is a LALR parser\footnote{LALR stand for Look Ahead, Left to Right, Rightmost derivation. Which is a bottom-up parser that analyses the text from left to right and always rewrites the rightmost nonterminal \autocite{ICD}.}
+that implements standard LALR(1)\footnote{The (1) refers to one-token lookahead. Which means that only the next input symbol is considered \autocite{ICD}.} parser generation \autocite{CUP}. The algorithm to compare
 the tokens extracted by CUP is GST which has been extended to exclude existing code but doesn't feature any other optimizations \autocite[4. Algorithm used]{RMP}.
 
 Plaggie display the similarity of individual files and entire submissions. With the similarity of two files being the percentage of the matched tokens
