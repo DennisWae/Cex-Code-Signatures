@@ -111,7 +111,7 @@ Moss and other plagiarism detection tools are not perfect, so a human should go 
 \end{table}
 
 
-\newpage
+\clearpage
 
 \subsection{MOSS}
 
@@ -119,17 +119,20 @@ Moss and other plagiarism detection tools are not perfect, so a human should go 
 
 Moss clams to be one of the best cheating detection algorithms.\footnote{"The algorithm behind moss is a significant improvement over other cheating detection algorithms (at least, over those known to us)." \autocite{SMOSS}} Moreover, moss supports the largest native programming languages variety\footnote{Of the four plagiarism detection programs listed in this paper}, but no other languages can be added. Moss supports the following languages: C, C++, Java, C\#, Python, Visual Basic, Javascript, FORTRAN, ML, Haskell, Lisp, Scheme, Pascal, Modula2, Ada, Perl, TCL, Matlab, VHDL, Verilog, Spice, MIPS assembly, a8086 assembly, a8086 assembly and HCL2.
 
-A unique feature of Moss is that it "is being provided as an Internet service. The service has been designed to be very easy to use[...]" \autocite{SMOSS}. In order to use this internet service, a Perl script must be executed which passes the files to the server. "In response to a query the Moss server produces HTML pages listing pairs of programs with similar code. Moss also highlights individual passages in programs that appear the same, making it easy to quickly compare the files. Finally, Moss can automatically eliminate matches to code that one expects to be shared (e.g., libraries or instructor-supplied code), thereby eliminating false positives that arise from legitimate sharing of code." \autocite{SMOSS}
+A unique feature of Moss is that it "is being provided as an Internet service. The service has been designed to be very easy to use[...]" \autocite{SMOSS}. In order to use this internet service, a Perl script must be executed which passes the selected programming files to the server. "In response to a query the Moss server produces HTML pages listing pairs of programs with similar code. Moss also highlights individual passages in programs that appear the same, making it easy to quickly compare the files. Finally, Moss can automatically eliminate matches to code that one expects to be shared (e.g., libraries or instructor-supplied code), thereby eliminating false positives that arise from legitimate sharing of code." \autocite{SMOSS}
 
 A disadvantage of Moss is that since Nov 13, 2022 there is a transmission limit of 100 submissions per day per user. This could cause problems if one wants to integrate Moss into an automated process.
 
 \subsubsection{Moss comparison algorithm}
 
-"Moss currently uses robust winnowing, which is more efficient and scalable (in the sense that it selects fewer fingerprints for the same quality of results) than previous algorithms we have tried. There are a few issues involved in making such a system work well in practice. For this application, positional information (document and line number) is stored with each selected fingerprint. The first step builds an index mapping fingerprints to locations for all documents, much like the inverted index built by search engines mapping words to positions in documents. In the second step, each document is fingerprinted a second time and the selected fingerprints are looked up in the index; this gives the list of all matching fingerprints for each document.
+To evaluate the uploaded programming files "Moss currently uses robust winnowing, which is more efficient and scalable [...] than previous algorithms we have tried. There are a few issues involved in making such a system work well in practice. For this application, positional information (document and line number) is stored with each selected fingerprint. The first step builds an index mapping fingerprints to locations for all documents, much like the inverted index built by search engines mapping words to positions in documents. In the second step, each document is fingerprinted a second time and the selected fingerprints are looked up in the index; this gives the list of all matching fingerprints for each document.
 
-Now the list of matching fingerprints for a document d may contain fingerprints from many different documents d1,d2,.... In the next step, the list of matching fingerprints for each document d is sorted by document and the matches for each pair of documents (d,d1),(d,d2),... is formed. Matches between documents are rank-ordered by size (number of fingerprints) and the largest matches are reported to the user." \autocite{WMOSS}
+Now the list of matching fingerprints for a document d may contain fingerprints from many different documents d1,d2,.... In the next step, the list of matching fingerprints for each document d is sorted by document and the matches for each pair of documents (d,d1),(d,d2),... is formed. Matches between documents are rank-ordered by size (number of fingerprints) and the largest matches are reported to the user." \autocite{WMOSS}[page 9 section 5.2]
 
 \subsubsection{Preliminary results}
+
+In order to determine the performance of the Moss program, two test are conducted (See Table~\ref{tab:MossTableM0} and table~\ref{tab:MossTableM4}). 
+For each test the related documents are uploaded to the moss server. After a while the server sends back a link to an HTML website, that is showing a table of the uploaded projects, the count of the matching lines and the similarity in percent.
 
 \begin{table}[ht]
 	\centering
@@ -146,6 +149,9 @@ Now the list of matching fingerprints for a document d may contain fingerprints 
 	\caption{\label{tab:MossTableM0}[Table of Milestone [0] distance between projects]}
 \end{table}
 
+The Table~\ref{tab:MossTableM0} shows that ST2M0-Geber1 and ST2M0-Nehmer1 are very similar. These two projects have 311 matching lines of code and have a max similarity of 81\%. ST2M0-Geber2 and ST2M0-Nehmer2 are also they similar. They have a max similarity of 66\%.
+
+
 \begin{table}[ht]
 	\centering
 	\begin{tabular}{|l|l|l|}
@@ -154,18 +160,19 @@ Now the list of matching fingerprints for a document d may contain fingerprints 
 	ST2M4-Geber1(54\%)  & ST2M4-Nehmer2(57\%) & 938           \\ \hline
 	ST2M4-Geber1(52\%)  & ST2M4-Nehmer1(52\%) & 908           \\ \hline
 	ST2M4-Nehmer1(51\%) & ST2M4-Nehmer2(54\%) & 884           \\ \hline
-	ST2M4-Geber2(13\%)  & ST2M4-Nehmer2(17\%) & 372           \\ \hline
-	ST2M4-Geber2(12\%)  & ST2M4-Nehmer1(15\%) & 363           \\ \hline
-	ST2M4-Geber1(14\%)  & ST2M4-Geber2(11\%)  & 333           \\ \hline
-	ST2M4-Geber2(8\%)   & ST2M4-Geber3(6\%)   & 254           \\ \hline
-	ST2M4-Geber3(6\%)   & ST2M4-Nehmer1(9\%)  & 253           \\ \hline
-	ST2M4-Geber1(9\%)   & ST2M4-Geber3(6\%)   & 238           \\ \hline
-	ST2M4-Geber3(5\%)   & ST2M4-Nehmer2(9\%)  & 239           \\ \hline
+	ST2M4-NoPlag2(13\%) & ST2M4-Nehmer2(17\%) & 372           \\ \hline
+	ST2M4-NoPlag2(12\%) & ST2M4-Nehmer1(15\%) & 363           \\ \hline
+	ST2M4-Geber1(14\%)  & ST2M4-NoPlag2(11\%) & 333           \\ \hline
+	ST2M4-NoPlag2(8\%)  & ST2M4-NoPlag1(6\%)  & 254           \\ \hline
+	ST2M4-NoPlag1(6\%)  & ST2M4-Nehmer1(9\%)  & 253           \\ \hline
+	ST2M4-Geber1(9\%)   & ST2M4-NoPlag1(6\%)  & 238           \\ \hline
+	ST2M4-NoPlag1(5\%)  & ST2M4-Nehmer2(9\%)  & 239           \\ \hline
 
 	\end{tabular}
 	\caption{\label{tab:MossTableM4}[Table of Milestone [4] distance between projects]}
 \end{table}
 
+In the second test (Table~\ref{tab:MossTableM4}), it is clearly visible that ST2M4-Geber1, ST2M4-Nehmer1 and ST2M4-Nehmer2 are in a triangular correlation. This is due to the fact that the three projects each have a high similarity percentage to each other.
 
 \clearpage
 
