@@ -53,14 +53,29 @@ citecolor = black] {hyperref}
 
 \section{Introduction}
 
-\section{How Does Plagiarism Detection Work}
+\section{How does source code plagiarism detection work}
 
+Plagiarism detection has become indispensable in the scientific field. Computer programs and algorithms can as well be copied and modified. Therefore, the question arises how to detect and recognize plagiarism in programming code. Of course, it is possible to detect patterns in different projects by hand. This process becomes unfortunately very labor-intensive the more projects must be compared to each other. The following chapter lists therefore a few methods how such an algorithm could be designed.
 
-*Fand den Abschnitt bei moss ganz nett könnte man ja mit reinpacken* Dennis G.
+\subsection{Automatic source code plagiarism detection}
 
-Moss and other plagiarism detection tools are not perfect, so a human should go other the results, and it should be checked if the clams are valid.
-"In particular, it is a misuse of Moss to rely solely on the similarity scores. These scores are useful for judging the relative amount of matching between different pairs of programs and for more easily seeing which pairs of programs stick out with unusual amounts of matching. But the scores are certainly not a proof of plagiarism. Someone must still look at the code."
-\autocite{SMOSS}
+There are several ways to design an algorithm that can detect source-code similarities. The following list classifies these different approaches:
+
+\begin{itemize}
+	\item "Strings - look for exact textual matches of segments, for instance five-word runs. Fast, but can be confused by renaming identifiers".
+	\item ”Tokens - as with strings, but using a lexer to convert the program into tokens first. This discards whitespace, comments, and identifier names, making the system more robust to simple text replacements. Most academic plagiarism detection systems work at this level, using different algorithms to measure the similarity between token sequences”.
+	\item ”Parse Trees - build and compare parse trees. This allows higher-level similarities to be detected. For instance, tree comparison can normalize conditional statements, and detect equivalent constructs as similar to each other”.
+	\item ”Program Dependency Graphs (PDGs) - a PDG captures the actual flow of control in a program, and allows much higher-level equivalences to be located, at a greater expense in complexity and calculation time”.
+	\item ”Metrics - metrics capture ’scores’ of code segments according to certain criteria; for instance, ”the number of loops and conditionals”, or ”the number of different variables used”. Metrics are simple to calculate and can be compared quickly, but can also lead to false positives: two fragments with the same scores on a set of metrics may do entirely different things ”.
+	\item ”Hybrid approaches - for instance, parse trees + suffix trees can combine the detection capability of parse trees with the speed afforded by suffix trees, a type of string-matching data structure”.
+\end{itemize}
+Source: \autocite{OaCoPDT}[p. 5]
+
+In the following chapter~\ref{sec:EvaluationOfTheDifferentTools} [\nameref{sec:EvaluationOfTheDifferentTools}] the selected algorithms will be analyzed in a bit more detail and the respective special features will be discussed.
+
+\subsection{Evaluation of the results from the automated method}
+
+Plagiarism detection tools are not perfect, so a human should go other the results, and it should be checked if the clams are valid. The author of the Moss algorithm \autocite{SMOSS} notes that "In particular, it is a misuse of Moss to rely solely on the similarity scores. These scores are useful for judging the relative amount of matching between different pairs of programs and for more easily seeing which pairs of programs stick out with unusual amounts of matching. But the scores are certainly not a proof of plagiarism. Someone must still look at the code."
 
 \section{Use Case and Software Experiment}
 
@@ -104,6 +119,7 @@ In order to decide on a tool we must set some criteria by which we are going to 
 {\color{red} ask Stefan for his own criteria}
 
 \section{Evaluation of the different Tools}
+\label{sec:EvaluationOfTheDifferentTools}
 
 This chapter tests and explains four different plagiarism detection tools. These tools are Moss, JPlag, Plaggie and AC2. These tools often name each other as good alternatives and are one of the most common plagiarism detection programs. In addition, this chapter discusses the different ways in which each algorithm detects plagiarism and how the data from the programs is analyzed and presented. 
 
