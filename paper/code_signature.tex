@@ -53,6 +53,8 @@ citecolor = black] {hyperref}
 
 \section{Introduction}
 
+\clearpage
+
 \section{How does source code plagiarism detection work}
 
 Plagiarism detection has become indispensable in the scientific field. Computer programs and algorithms can as well be copied and modified. Therefore, the question arises how to detect and recognize plagiarism in programming code. Of course, it is possible to detect patterns in different projects by hand. This process becomes unfortunately very labor-intensive the more projects must be compared to each other. The following chapter lists therefore a few methods how such an algorithm could be designed.
@@ -76,6 +78,8 @@ In the following chapter~\ref{sec:EvaluationOfTheDifferentTools} [\nameref{sec:E
 \subsection{Evaluation of the results from the automated method}
 
 Plagiarism detection tools are not perfect, so a human should go other the results, and it should be checked if the clams are valid. The author of the Moss algorithm \autocite{SMOSS} notes that "In particular, it is a misuse of Moss to rely solely on the similarity scores. These scores are useful for judging the relative amount of matching between different pairs of programs and for more easily seeing which pairs of programs stick out with unusual amounts of matching. But the scores are certainly not a proof of plagiarism. Someone must still look at the code."
+
+\clearpage
 
 \section{Use Case and Software Experiment}
 
@@ -121,6 +125,8 @@ In order to decide on a tool we must set some criteria by which we are going to 
 
 {\color{red} ask Stefan for his own criteria}
 
+\clearpage
+
 \section{Evaluation of the different Tools}
 \label{sec:EvaluationOfTheDifferentTools}
 
@@ -139,8 +145,6 @@ This chapter tests and explains four different plagiarism detection tools. These
 \end{table}
 
 Table~\ref{tab:AlgorithmLanguageSupportTable} shows which programming language is supported by the corresponding plagiarism detection tool. The last column shows whether the user can add more programming languages to the plagiarism detection algorithm.
-
-\clearpage
 
 \subsection{MOSS}
 
@@ -202,8 +206,6 @@ The Table~\ref{tab:MossTableM0} shows that ST2M0-Geber1 and ST2M0-Nehmer1 are ve
 \end{table}
 
 In the second test (Table~\ref{tab:MossTableM4}), it is clearly visible that ST2M4-Geber1, ST2M4-Nehmer1 and ST2M4-Nehmer2 are in a triangular correlation. This is due to the fact that the three projects each have a high similarity percentage to each other.
-
-\clearpage
 
 \subsection{JPlag}
 
@@ -386,8 +388,6 @@ and the unsuccessful attacks being:
 \end{itemize}
 \autocite[Known unsuccessful attacks]{RMP}
 
-\newpage
-
 \subsection{AC2}
 
 "AC is a source code plagiarism detection tool. It aids instructors and graders to detect plagiarism within a group of assignments written in languages such as C, C++, Java, PHP, XML, Python, ECMAScript, Pascal or VHDL (plaintext works too, but is less precise). AC incorporates multiple similarity detection algorithms found in the scientific literature, and allows their results to be visualized graphically." \autocite{AC2} The first version of "AC was born in the Escuela Politécnica Superior of the Universidad Autónoma de Madrid to deter and detect source-code plagiarism in programming assignments". \autocite{AC2}
@@ -483,7 +483,7 @@ Figure~\ref{fig:AC2R2} illustrates that G1, N1 and N2 have probably copied from 
 
 Table~\ref{tab:AC2DistanceTableM0} and table~\ref{tab:AC2DistanceTableM4} show how far apart the individual projects are. This distinguishes AC2 from other plagiarism detection programs, as they often reflect the similarity in percent to the user.
 
-\newpage
+\clearpage
 
 
 \section{Conclusion}
