@@ -53,6 +53,12 @@ citecolor = black] {hyperref}
 
 \section{Introduction}
 
+In order to teach students how to program some modules like "Softwaretechnik 2" at the Cologne University of Applied Sciences offer mandatory coding exercises to the students. However, there are attempts to cheat during those exercises and to copy from other students. These plagiarism attempts have to be found manually which can be a very involved task when there are over 100 submissions. In order to simplify this process a plagiarism detection tool shall be used.
+
+There are multiple different tools available for detecting plagiarism. This paper attempts to shine a light on the differences of the results of those tools when applied to Java coding exercises which use the Spring framework. There were four tools identified which could be used to detect plagiarism attempts. These tools and their algorithms will be presented, including an overview of the different methods of plagiarism detection.
+
+A software experiment to evaluate these 4 tools will also be presented the results of which will be available in a part 2 of this paper.
+
 \clearpage
 
 \section{How does source code plagiarism detection work}
@@ -122,8 +128,6 @@ In order to decide on a tool we must set some criteria by which we are going to 
 	\item The tool must be able to evaluate over 100 submissions in a reasonable time
 	\item The tool must be able to be integrated into the Divekit pipeline or workflow
 \end{itemize}
-
-{\color{red} ask Stefan for his own criteria}
 
 \clearpage
 
@@ -342,13 +346,7 @@ grow that much when excluding the base code in comparison to m0.
 	\caption{\label{tab:JPlagSimilarityTableM4}[Table of Milestone [4] showing the similarity between submissions]}
 \end{table}
 
-%\subsubsection{Integration into an automated evaluation pipeline}
-
-%JPlag probably show the most potential to be used in an automated pipeline as it not only provides a CLI but also a Java API, while also being able to be
-%run locally\autocite{JPlagG} which means that there are no submission limits like in MOSS and that JPlag can be easily integrated into the existing pipeline.
-%However, results are always saved as a Zip file and are view in a web application which can also be run locally. This poses a problem as???
-
-%-How does the pipeline work, are files permanently saved or deleted after it finishes evaluation, can they be accessed
+\newpage
 
 \subsection{Plaggie}
 
@@ -487,6 +485,16 @@ Table~\ref{tab:AC2DistanceTableM0} and table~\ref{tab:AC2DistanceTableM4} show h
 
 
 \section{Conclusion}
+
+When looking at the four tools two of them could be viable for use in the Divekit workflow. Those being JPlag and AC2. Jplag had overall the clearest results when applied to the known plagiarisms, while its optimized algorithms also promises a quick evaluation of the submissions.
+
+AC2 would be the runner-up with its intriguing visualization of the analyzed programs. However, AC2's results were less clear than those of JPlag and it being an entirely graphical application would require more manual work. However, this extra effort shouldn't pose too much of a problem.
+
+MOSS also had very clear results with the plagiarism attempts being clearly having a higher similarity between each other than the non plagiarized programs, but MOSS is only available as a WWW service which is hosted by the Stanford University in the US. This poses a problem as the Cologne University of Applied Sciences is bases in Germany and has to comply with German and EU privacy laws.
+
+Plaggie would probably not be a viable tool since it hasn't been updated since 2006, and it only supports Java 1.5. Furthermore, our attempts to make it run were unsuccessful. Probably because the used Java version was too new for Plaggie. Otherwise, Plaggie doesn't offer anything special as its major contribution was being the only open source tool, which it isn't anymore at this point in time.
+
+Therefore, the software experiment will focus JPlag and AC2 and evaluate these two tools in order to ascertain which tool is the most suitable for use in ST2.
 
 \newpage
 
