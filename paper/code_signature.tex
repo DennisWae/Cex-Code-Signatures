@@ -43,7 +43,7 @@ citecolor = black] {hyperref}
 \begin{document}
 
 \title{How do various plagiarism detection tools differ in their detection results when applied to java/spring coding exercises}
-\author{Dennis Goßler \and Dennis Wäckerle}
+\author{Dennis Goßler [11140150] \and Dennis Wäckerle [11131801]}
 \maketitle
 
 \section*{Abstract}
@@ -76,7 +76,7 @@ There are several ways to design an algorithm that can detect source-code simila
 	\item ”Tokens - as with strings, but using a lexer to convert the program into tokens first. This discards whitespace, comments, and identifier names, making the system more robust to simple text replacements. Most academic plagiarism detection systems work at this level, using different algorithms to measure the similarity between token sequences”.
 	\item ”Parse Trees - build and compare parse trees. This allows higher-level similarities to be detected. For instance, tree comparison can normalize conditional statements, and detect equivalent constructs as similar to each other”.
 	\item ”Program Dependency Graphs (PDGs) - a PDG captures the actual flow of control in a program, and allows much higher-level equivalences to be located, at a greater expense in complexity and calculation time”.
-	\item ”Metrics - metrics capture ’scores’ of code segments according to certain criteria; for instance, ”the number of loops and conditionals”, or ”the number of different variables used”. Metrics are simple to calculate and can be compared quickly, but can also lead to false positives: two fragments with the same scores on a set of metrics may do entirely different things ”.
+	\item ”Metrics - metrics capture ’scores’ of code segments according to certain criteria; for instance, ’the number of loops and conditionals’, or ’the number of different variables used’. Metrics are simple to calculate and can be compared quickly, but can also lead to false positives: two fragments with the same scores on a set of metrics may do entirely different things ”.
 	\item ”Hybrid approaches - for instance, parse trees + suffix trees can combine the detection capability of parse trees with the speed afforded by suffix trees, a type of string-matching data structure”.
 \end{itemize}
 Source: \autocite{OaCoPDT}[p. 5]
@@ -105,8 +105,7 @@ detection tool can be used to improve this process.
 
 \subsection{Software Experiment}
 
-In order to find the most suiting tool for the outlined use case a software experiment has been formulated which will be formed. During this experiment
-the tools will have to analyze already known plagiarisms. After that they have to analyze the real submissions for the 5 different milestones of the
+In order to find the most suiting tool for the outlined use case a software experiment has been formulated which will be formed. In this experiment, the tools have to analyze already known plagiarisms. After that they have to analyze the real submissions for the 5 different milestones of the
 ST2 modules. While there were some plagiarism attempts discovered for milestone 0 and 4 there are no known attempts for the other milestones. So, in order
 to be able to properly evaluate these tools plagiarisms are to be created and inserted into the evaluation process of the tools.
 
