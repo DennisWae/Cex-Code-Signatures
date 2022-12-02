@@ -85,7 +85,7 @@ In the following chapter~\ref{sec:EvaluationOfTheDifferentTools} [\nameref{sec:E
 
 \subsection{Evaluation of the results from the automated method}
 
-Plagiarism detection tools are not perfect, so a human should go other the results, and it should be checked if the clams are valid. The author of the Moss algorithm \autocite{SMOSS} notes that "In particular, it is a misuse of Moss to rely solely on the similarity scores. These scores are useful for judging the relative amount of matching between different pairs of programs and for more easily seeing which pairs of programs stick out with unusual amounts of matching. But the scores are certainly not a proof of plagiarism. Someone must still look at the code."
+Plagiarism detection tools are not perfect, so a human should go over the results, and it should be checked if the claims are valid. The author of the Moss algorithm \autocite{SMOSS} notes that "In particular, it is a misuse of Moss to rely solely on the similarity scores. These scores are useful for judging the relative amount of matching between different pairs of programs and for more easily seeing which pairs of programs stick out with unusual amounts of matching. But the scores are certainly not a proof of plagiarism. Someone must still look at the code."
 
 \clearpage
 
@@ -136,7 +136,7 @@ In order to decide on a tool we must set some criteria by which we are going to 
 \section{Evaluation of the different Tools}
 \label{sec:EvaluationOfTheDifferentTools}
 
-This chapter tests and explains four different plagiarism detection tools. These tools are Moss, JPlag, Plaggie and AC2. These tools often name each other as good alternatives and are one of the most common plagiarism detection programs. In addition, this chapter discusses the different ways in which each algorithm detects plagiarism and how the data from the programs is analyzed and presented. 
+This chapter tests and explains four different plagiarism detection tools. These tools are Moss, JPlag, Plaggie and AC2. These tools often name each other as good alternatives and are some of the most common plagiarism detection programs. In addition, this chapter discusses the different ways in which each algorithm detects plagiarism and how the data from the programs is analyzed and presented. 
 
 \begin{table}[h]
 	\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|}
@@ -392,12 +392,12 @@ and the unsuccessful attacks being:
 
 "AC is a source code plagiarism detection tool. It aids instructors and graders to detect plagiarism within a group of assignments written in languages such as C, C++, Java, PHP, XML, Python, ECMAScript, Pascal or VHDL (plaintext works too, but is less precise). AC incorporates multiple similarity detection algorithms found in the scientific literature, and allows their results to be visualized graphically." \autocite{AC2} The first version of "AC was born in the Escuela Politécnica Superior of the Universidad Autónoma de Madrid to deter and detect source-code plagiarism in programming assignments". \autocite{AC2}
 
-2016 AC version 2 was released. In the version 2.0 the developers switched to Maven and Antr4\footnote{\label{footnoteAntlr}"In computer-based language recognition, ANTLR (pronounced antler), or ANother Tool for Language Recognition, is a parser generator that uses LL(*) for parsing. ANTLR is the successor to the Purdue Compiler Construction Tool Set (PCCTS), first developed in 1989, and is under active development."\autocite{enwiki:1115716413}}. The developers of AC also moved their git repository to GitHub an internet hosting service for software development and version control.
+In 2016 AC version 2 was released. In the version 2.0 the developers switched to Maven and Antr4\footnote{\label{footnoteAntlr}"In computer-based language recognition, ANTLR (pronounced antler), or ANother Tool for Language Recognition, is a parser generator that uses LL(*) for parsing. ANTLR is the successor to the Purdue Compiler Construction Tool Set (PCCTS), first developed in 1989, and is under active development."\autocite{enwiki:1115716413}}. The developers of AC also moved their git repository to GitHub an internet hosting service for software development and version control.
 
 AC2 lists some advantages over the other plagiarism detection tools on their GitHub page. In this regard, it is
 
 \begin{itemize}
-	\item "local, and does not require sending data to remote servers (not the case of Moss)local, and does not require sending data to remote servers (not the case of Moss)"
+	\item "local, and does not require sending data to remote servers (not the case of Moss)"
 	\item "robust, using Normalized Compression Distance as its main measure-of-similarity, but with the possibility of integrating other, additional measures to gain better pictures of what is going on (JPlag, Moss and Plaggie have hard-coded analyses, mostly based on sub-string matching after tokenization)."
 	\item "heavy on information visualization. AC will not provide "percentage of copy"; instead, it will create graphical representations of the degree of similarity between student submissions within a group, so instructors can build their own explanations regarding what really happened (see here and here for papers on AC's visualizations)."
 \end{itemize}\autocite{AC2}
